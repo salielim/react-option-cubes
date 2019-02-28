@@ -1,22 +1,56 @@
 // Actions
-const UPDATE = '@components/OptionCube/UPDATE';
-const REMOVE = '@components/OptionCube/REMOVE';
+const SELECT_ONE = '@components/OptionCube/SELECT_ONE';
+const SELECT_MANY = '@components/OptionCube/SELECT_MANY';
 
 // Reducer
-export default function reducer(state = {}, action = {}) {
+export default (state = {}, action = {}) => {
   switch (action.type) {
-    // do reducer stuff
-    default: return state;
+    case SELECT_ONE:
+      return {
+        ...state,
+        [action.field]: action.payload
+      };
+    case SELECT_MANY:
+      if (state[action.field]) {
+        if (
+          state[action.field].find(el => {
+            return el.id === action.payload.id;
+          }) === undefined
+        ) {
+          return Object.assign({}, state, {
+            [action.field]: [...state[action.field], action.payload]
+          });
+        } else {
+          return {
+            ...state,
+            [action.field]: state[action.field].filter(function(obj) {
+              return obj.id !== action.payload.id;
+            })
+          };
+        }
+      } else if (!state[action.field]) {
+        return {
+          ...state,
+          [action.field]: [action.payload]
+        };
+      }
+      return {
+        ...state
+      };
+    default:
+      return state;
   }
-}
+};
 
 // Action Creators
-export const updateOptionCube = (payload) => ({
-  type: UPDATE,
-  payload
+export const selectManyOptions = (payload, field) => ({
+  type: SELECT_MANY,
+  payload,
+  field
 });
 
-export const removeOptionCube = (payload) => ({
-  type: REMOVE,
-  payload
+export const selectOneOption = (payload, field) => ({
+  type: SELECT_ONE,
+  payload,
+  field
 });

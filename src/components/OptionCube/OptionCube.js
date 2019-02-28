@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateOptionCube } from './ducks';
+import { selectOneOption, selectManyOptions } from './ducks';
 import './style.scss';
 
 class OptionCubes extends React.PureComponent<Props> {
@@ -14,10 +14,12 @@ class OptionCubes extends React.PureComponent<Props> {
         : null;
     }
   };
-  handleCubeClick = (payload, name) => e => {
-    const { updateOptionCube, fieldName } = this.props;
-    updateOptionCube(payload, fieldName);
+
+  handleCubeClick = (payload) => e => {
+    const { selectOneOption, selectManyOptions, field, selectOne } = this.props;
+    selectOne ? selectOneOption(payload, field) : selectManyOptions(payload, field);
   };
+
   render() {
     const { data, width, height } = this.props;
     return (
@@ -26,7 +28,7 @@ class OptionCubes extends React.PureComponent<Props> {
           <div
             className={`option-cube__box--inactive ${this.getClass(item.id)}`}
             key={item.label}
-            onClick={this.handleCubeClick(item.id, item.label)}
+            onClick={this.handleCubeClick(item)}
             style={{ width, height }}
           >
             <div>
@@ -41,10 +43,11 @@ class OptionCubes extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = (state, props) => {};
 
 const mapDispatchToProps = dispatch => ({
-  updateOptionCube: (payload, name) => dispatch(updateOptionCube(payload, name))
+  selectOneOption: (payload, field) => dispatch(selectOneOption(payload, field)),
+  selectManyOptions: (payload, field) => dispatch(selectManyOptions(payload, field))
 });
 
 export default connect(

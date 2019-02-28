@@ -5,22 +5,22 @@ import './App.css';
 const optionsData = [
   {
     id: 838203882,
-    label: 'Option 1',
+    label: 'React',
     img: 'https://via.placeholder.com/300'
   },
   {
     id: 992490390,
-    label: 'Option 2',
+    label: 'Angular',
     img: 'https://via.placeholder.com/300'
   },
   {
-    id: 992490390,
-    label: 'Option 3',
+    id: 756765765,
+    label: 'Vue',
     img: 'https://via.placeholder.com/300'
   }
 ]
 
-// const optionsData = [
+// const optionsDataNoImg = [
 //   {
 //     id: 838203882,
 //     label: 'Option 1',
@@ -43,6 +43,15 @@ class App extends Component {
           data={optionsData}
           width="200px"
           height="200px"
+          field="selectOneFramework"
+          selectOne={true}
+        />
+        <OptionCube
+          data={optionsData}
+          width="200px"
+          height="200px"
+          field="selectManyFramework"
+          selectOne={false}
         />
       </div>
     );
