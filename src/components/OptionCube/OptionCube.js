@@ -3,21 +3,6 @@ import { connect } from 'react-redux';
 import { updateOptionCube } from './ducks';
 import './style.scss';
 
-const optionsData = [
-  {
-    id: 838203882,
-    label: 'Option 1'
-  },
-  {
-    id: 992490390,
-    label: 'Option 2'
-  },
-  {
-    id: 992490390,
-    label: 'Option 3'
-  }
-]
-
 class OptionCubes extends React.PureComponent<Props> {
   getClass = id => {
     if (this.props.feFrameworkArr) {
@@ -25,7 +10,7 @@ class OptionCubes extends React.PureComponent<Props> {
       return feFrameworkArr.find(function(el) {
         return el.id === id;
       }) !== undefined
-        ? 'option-cubes-active'
+        ? 'option-cube--inactive'
         : null;
     }
   };
@@ -34,17 +19,20 @@ class OptionCubes extends React.PureComponent<Props> {
     updateOptionCube(payload, fieldName);
   };
   render() {
+    const { data, width, height } = this.props;
     return (
-      <div className="option-cubes-container">
-        {optionsData.map(item => (
+      <div className="option-cube">
+        {data.map(item => (
           <div
-            className={`option-cubes ${this.getClass(item.id)}`}
+            className={`option-cube__box--inactive ${this.getClass(item.id)}`}
             key={item.label}
             onClick={this.handleCubeClick(item.id, item.label)}
+            style={{ width, height }}
           >
-            <div className="option-img-wrapper">
+            <div>
               {/* {this.getClass(item.id) && <IconSelect />} */}
-              <div className="option-cubes-caption">{item.label}</div>
+              {item.img && <img alt={item.label} src={item.img} />}
+              <div>{item.label}</div>
             </div>
           </div>
         ))}
@@ -53,8 +41,7 @@ class OptionCubes extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = state => {};
 
 const mapDispatchToProps = dispatch => ({
   updateOptionCube: (payload, name) => dispatch(updateOptionCube(payload, name))
