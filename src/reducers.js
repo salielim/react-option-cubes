@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
-import { default as optionCube } from './components/OptionCube/ducks';
+import { default as OptionCubes } from './components/OptionCubes/ducks';
 
 export default combineReducers({
-  optionCube
+  OptionCubes
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import OptionCube from './components/OptionCube'
+import OptionCubes from './components/OptionCubes'
 import './App.css';
 
 const optionsData = [
@@ -39,14 +39,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <OptionCube
+        <OptionCubes
           data={optionsData}
           width="200px"
           height="200px"
           field="selectOneFramework"
           selectOne={true}
         />
-        <OptionCube
+        <OptionCubes
           data={optionsData}
           width="200px"
           height="200px"

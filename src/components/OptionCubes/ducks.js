@@ -1,6 +1,6 @@
 // Actions
-const SELECT_ONE = '@components/OptionCube/SELECT_ONE';
-const SELECT_MANY = '@components/OptionCube/SELECT_MANY';
+const SELECT_ONE = '@components/OptionCubes/SELECT_ONE';
+const SELECT_MANY = '@components/OptionCubes/SELECT_MANY';
 
 // Reducer
 export default (state = {}, action = {}) => {
