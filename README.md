@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Simple Selection Cubes
+In forms, there are several ways for a user to select options - dropdowns, checkboxes and radio boxes. Here is an alternative - selection options presented in cubes that can be selected. This is a simple react component that uses Redux to store data of selected options.
 
-## Available Scripts
-
-In the project directory, you can run:
-
+## Start this app
+Clone this repo and in the project directory run:
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view the components in the browser.
+The page will reload if you make edits.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## How to use the component
+### Setup Reducers and Action creators
+```
+./src/components/OptionCubes/ducks.js
+```
 
-### `npm test`
+### Define the data, here it is mocked
+```
+const optionsData = [
+  {
+    id: 838203882,
+    label: 'React',
+    img: 'https://via.placeholder.com/300'
+  },
+  {
+    id: 992490390,
+    label: 'Angular',
+    img: 'https://via.placeholder.com/300'
+  },
+  {
+    id: 756765765,
+    label: 'Vue',
+    img: 'https://via.placeholder.com/300'
+  }
+]
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Import the component
+```
+import OptionCubes from './components/OptionCubes'
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Use the component
+```
+<OptionCubes
+  data={optionsData}      // array containing options information 
+  width="200px"           // customise the width of the cube or rectangle
+  height="200px"          // customise the height of the cube or rectangle
+  field="selectOneCube"   // field name of the option, this is the key stored in redux
+  selectOne={true}        // use true if only one option can be selected or false for multiple options
+/>
+```
