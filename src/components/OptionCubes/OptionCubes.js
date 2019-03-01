@@ -35,7 +35,6 @@ class OptionCubes extends React.PureComponent<Props> {
           >
             <div>
               {this.getClass(item.id) && <IconSelect />}
-              {/* <IconSelect /> */}
               {item.img && <img alt={item.label} src={item.img} />}
               <div>{item.label}</div>
             </div>
@@ -45,7 +44,6 @@ class OptionCubes extends React.PureComponent<Props> {
     );
   }
 }
-
 
 const mapStateToProps = (state, props) => {
   if (state.OptionCubes) {
